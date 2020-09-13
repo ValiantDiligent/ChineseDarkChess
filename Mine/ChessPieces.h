@@ -23,6 +23,7 @@
 #define CHESSPIECES_H
 
 #include <QString>
+//#include <cstdlib>
 //#include <QRect>
 //#include <QPainter>
 
@@ -31,11 +32,11 @@ class ChessPieces
 public:
     ChessPieces();
     ~ChessPieces();
-
+   void getmap();
     void init(int id);  //初始化
     //void rotate();   //轮转函数
     QString getnName();    //棋子对应的汉字
-
+    int trans();
     enum m_emTYPE{JIANG, SHI, XIANG, MA, CHE, PAO, BING};
 
     int  m_nRow;   //行
@@ -44,6 +45,7 @@ public:
     bool m_bDead;  //死亡状态
     bool m_bRed;   //是否是红方
     bool m_bon;    //是否正面
+    int m_level; //棋子等级
     m_emTYPE m_emType;  //具体哪一个棋子
 };
 

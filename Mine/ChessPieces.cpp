@@ -24,30 +24,28 @@
 //1、定义结构体tPOS
 struct POS
 {
-    int t_nRow;
-    int t_nCol;
     ChessPieces::m_emTYPE t_emType;
 };
-
+ int mapID[33] ={0};
 //定义基础的16棋子[预定作为上方使用，黑棋使用]
 POS tPos[16]= {
-              {0, 0, ChessPieces::CHE},
-              {0, 1, ChessPieces::MA},
-              {0, 2, ChessPieces::XIANG},
-              {0, 3, ChessPieces::SHI},
-              {0, 4, ChessPieces::JIANG},
-              {0, 5, ChessPieces::SHI},
-              {0, 6, ChessPieces::XIANG},
-              {0, 7, ChessPieces::MA},
-              {1, 0, ChessPieces::CHE},
+              { ChessPieces::CHE},
+              { ChessPieces::MA},
+              {ChessPieces::XIANG},
+              { ChessPieces::SHI},
+              { ChessPieces::JIANG},
+              {ChessPieces::SHI},
+              {ChessPieces::XIANG},
+              { ChessPieces::MA},
+              {ChessPieces::CHE},
 
-              {1, 1, ChessPieces::PAO},
-              {1, 2, ChessPieces::PAO},
-              {1, 3, ChessPieces::BING},
-              {1, 4, ChessPieces::BING},
-              {1, 5, ChessPieces::BING},
-              {1, 6, ChessPieces::BING},
-              {1, 7, ChessPieces::BING}
+              {ChessPieces::PAO},
+              {ChessPieces::PAO},
+              { ChessPieces::BING},
+              { ChessPieces::BING},
+              {ChessPieces::BING},
+              {ChessPieces::BING},
+              {ChessPieces::BING}
               };
 
 
@@ -60,27 +58,41 @@ ChessPieces::~ChessPieces()
 {
 
 }
+void ChessPieces::getmap()
+{
+    int arrID[33] = {0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31};
 
+    for (int i = 31;i>0 ; i--)
+       {
+           int pos = rand() % i;
+           mapID[i] = arrID[pos];
+           for (int j = pos;j<32;j++)
+           {
+               arrID[j] = arrID[j+1];
+           }
+       }
+    mapID[0] = arrID[0];
+}
 //初始化  对每一个棋子进行检验判断而后赋相应的值
 void ChessPieces::init(int id)
 {
 
-
-
     if(id <16)
     {
-        m_nRow = tPos[id].t_nRow;
-        m_nCol = tPos[id].t_nCol;
-        m_emType = tPos[id].t_emType;
+    m_nRow = mapID[id]/8 ;// 可以计算
+    m_nCol = mapID[id]%8;// 可以计算
+        m_emType = tPos[id].t_emType; //赋值类型
         m_bRed = false;
+        m_level = trans(); //类型转等级
         m_bon = 0;//默认反面
     }
     else
     {
-        m_nRow = 3-tPos[id-16].t_nRow;
-        m_nCol = 7-tPos[id-16].t_nCol;
+        m_nRow = mapID[id]/8 ;// 可以计算
+        m_nCol = mapID[id]%8;// 可以计算
         m_emType = tPos[id-16].t_emType;
         m_bRed = true;
+        m_level = trans();
         m_bon = 0;//默认反面
     }
 
@@ -88,7 +100,30 @@ void ChessPieces::init(int id)
 }
 
 
+int ChessPieces::trans() //转换等级
+{
+    switch(m_emType)
+    {
+    case CHE:
+        return 3;
+    case MA:
+        return 2;
+    case PAO:
+        return 1;
+    case BING:
+        return 0;
+    case JIANG:
+        return 6;
+    case SHI:
+        return 5;
+    case XIANG:
+        return 4;
+    default:
+        return -1;
+    }
 
+    return -1;
+}
 
 QString ChessPieces::getnName()
 {

@@ -151,6 +151,30 @@ border-image: url(:/images/b.jpg);
         </widget>
        </item>
        <item>
+        <widget class="QLabel" name="label_3">
+         <property name="text">
+          <string>TextLabel</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QCheckBox" name="rCheckBox">
+         <property name="text">
+          <string>电脑[红]</string>
+         </property>
+         <property name="tristate">
+          <bool>false</bool>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QCheckBox" name="bCheckBox">
+         <property name="text">
+          <string>电脑[黑]</string>
+         </property>
+        </widget>
+       </item>
+       <item>
         <spacer name="verticalSpacer">
          <property name="orientation">
           <enum>Qt::Vertical</enum>
@@ -181,19 +205,6 @@ border-image: url(:/images/b.jpg);
            </property>
           </spacer>
          </item>
-         <item>
-          <widget class="QPushButton" name="pushButton_about">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="text">
-            <string>关于作者</string>
-           </property>
-          </widget>
-         </item>
         </layout>
        </item>
       </layout>
@@ -207,7 +218,7 @@ border-image: url(:/images/b.jpg);
      <x>0</x>
      <y>0</y>
      <width>1156</width>
-     <height>22</height>
+     <height>26</height>
     </rect>
    </property>
   </widget>
