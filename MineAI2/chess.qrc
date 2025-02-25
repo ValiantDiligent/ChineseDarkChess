@@ -1,0 +1,10 @@
+<RCC>
+    <qresource prefix="/new/prefix1">
+        <file>source/img/logo.png</file>
+    </qresource>
+    <qresource prefix="/">
+        <file>source/img/qaz.ico</file>
+        <file>source/img/5abc.png</file>
+        <file>source/img/back.png</file>
+    </qresource>
+</RCC>
